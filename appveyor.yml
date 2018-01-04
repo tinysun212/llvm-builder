@@ -80,6 +80,9 @@ after_build:
   - cd %WORK_DIR%
   - 7z a llvm_two.zip build/NinjaMinGW/llvm/lib/*.a build/NinjaMinGW/llvm/bin/clang.exe build/NinjaMinGW/llvm/bin/clang++.exe build/NinjaMinGW/llvm/bin/llvm-tblgen.exe build/NinjaMinGW/llvm/lib/clang build/NinjaMinGW/llvm/lib/llvm build/NinjaMinGW/llvm/tools
 
+test_script:
+  - 'echo test_script'
+
 artifacts:
   - path: llvm_two.zip
     name: LLVM TWO
