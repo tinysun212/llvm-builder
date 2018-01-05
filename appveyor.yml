@@ -84,7 +84,7 @@ after_build:
   - cd %WORK_DIR%
   #- tar zcf llvm_lib.tar.gz build/NinjaMinGW/llvm/lib/*.a build/NinjaMinGW/llvm/bin/clang.exe build/NinjaMinGW/llvm/bin/clang++.exe build/NinjaMinGW/llvm/bin/llvm-tblgen.exe build/NinjaMinGW/llvm/lib/clang build/NinjaMinGW/llvm/lib/llvm build/NinjaMinGW/llvm/tools
   - tar zcf llvm_lib.tar.gz build/NinjaMinGW/llvm/lib/*.a build/NinjaMinGW/llvm/bin/clang.exe build/NinjaMinGW/llvm/bin/clang++.exe build/NinjaMinGW/llvm/bin/llvm-tblgen.exe build/NinjaMinGW/llvm/lib/clang build/NinjaMinGW/llvm/tools
-  - mv llvm_lib.tar.gz %APPVEYOR_BUILD_FOLDER%
+  #- mv llvm_lib.tar.gz %APPVEYOR_BUILD_FOLDER%
 
 test_script:
   - 'echo skip test'
