@@ -82,12 +82,12 @@ build_script:
   
 after_build:
   - cd %WORK_DIR%
-  - 7z a llvm_lib.zip build/NinjaMinGW/llvm/lib/*.a build/NinjaMinGW/llvm/bin/clang.exe build/NinjaMinGW/llvm/bin/clang++.exe build/NinjaMinGW/llvm/bin/llvm-tblgen.exe build/NinjaMinGW/llvm/lib/clang build/NinjaMinGW/llvm/lib/llvm build/NinjaMinGW/llvm/tools
-  - mv llvm_lib.zip %APPVEYOR_BUILD_FOLDER%
+  - tar zcf llvm_lib.tar.gz build/NinjaMinGW/llvm/lib/*.a build/NinjaMinGW/llvm/bin/clang.exe build/NinjaMinGW/llvm/bin/clang++.exe build/NinjaMinGW/llvm/bin/llvm-tblgen.exe build/NinjaMinGW/llvm/lib/clang build/NinjaMinGW/llvm/lib/llvm build/NinjaMinGW/llvm/tools
+  - mv llvm_lib.tar.gz %APPVEYOR_BUILD_FOLDER%
 
 test_script:
   - 'echo skip test'
 
 artifacts:
-  - path: llvm_lib.zip
+  - path: llvm_lib.tar.gz
     name: LLVM LIB
