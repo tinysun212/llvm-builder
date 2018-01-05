@@ -83,7 +83,7 @@ build_script:
   
 after_build:
   - cd %WORK_DIR%/build/NinjaMinGW/llvm
-  - tar zcf llvm_lib.tar.gz lib/*.a bin/clang.exe bin/clang++.exe bin/llvm-tblgen.exe include lib/clang lib/cmake tools
+  - tar zcf llvm_lib.tar.gz lib/*.a bin/clang.exe bin/clang++.exe bin/llvm-tblgen.exe cmake include lib/clang lib/cmake tools
   - mv llvm_lib.tar.gz %APPVEYOR_BUILD_FOLDER%
 
 test_script:
