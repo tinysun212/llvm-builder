@@ -12,6 +12,7 @@ install:
   - SET "PATH_MINGW64=c:\msys64\mingw64\bin;c:\msys64\usr\bin"
   - SET PATH=%PATH_MINGW64%;%PATH_ORIGINAL%
   - SET WORK_DIR=c:\projects\llvm-builder
+  - mkdir %WORK_DIR%
   - cd %WORK_DIR%
   
   # Install packages
@@ -82,6 +83,7 @@ build_script:
 after_build:
   - cd %WORK_DIR%
   - 7z a llvm_lib.zip build/NinjaMinGW/llvm/lib/*.a build/NinjaMinGW/llvm/bin/clang.exe build/NinjaMinGW/llvm/bin/clang++.exe build/NinjaMinGW/llvm/bin/llvm-tblgen.exe build/NinjaMinGW/llvm/lib/clang build/NinjaMinGW/llvm/lib/llvm build/NinjaMinGW/llvm/tools
+  - mv llvm_lib.zip %APPVEYOR_BUILD_FOLDER%
 
 test_script:
   - 'echo skip test'
