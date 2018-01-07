@@ -55,7 +55,7 @@ build_script:
   - cd %WORK_DIR%/build/NinjaMinGW/llvm
   - cmake -G Ninja -D CMAKE_BUILD_TYPE=RELEASE -DCMAKE_C_COMPILER=clang  -DCMAKE_CXX_COMPILER=clang++ -DLLVM_ENABLE_ASSERTIONS:BOOL=TRUE %WORK_DIR%/llvm
   # Use artifacts previously created by ninja
-  - wget -q https://ci.appveyor.com/api/projects/tinysun212/llvm-prebuilder/artifacts/swift_llvm_cache.tar.gz & dir llvm_cache.tar.gz
+  - wget -q https://ci.appveyor.com/api/projects/tinysun212/llvm-prebuilder/artifacts/swift_llvm_cache.tar.gz
   - tar zxf swift_llvm_cache.tar.gz
   - ninja
   
