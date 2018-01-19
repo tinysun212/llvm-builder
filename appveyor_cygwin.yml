@@ -73,15 +73,15 @@ build_script:
     lib/libLLVMBPFDesc.a lib/libLLVMBPFDisassembler.a lib/libLLVMBPFInfo.a lib/libLLVMCodeGen.a lib/libLLVMCore.a lib/libLLVMCoroutines.a
     lib/libLLVMCoverage.a lib/libLLVMDebugInfoCodeView.a lib/libLLVMDebugInfoDWARF.a lib/libLLVMDebugInfoMSF.a
     lib/libLLVMDemangle.a lib/libLLVMExecutionEngine.a lib/libLLVMGlobalISel.a lib/libLLVMHexagonAsmParser.a lib/libLLVMHexagonCodeGen.a
-  #  lib/libLLVMHexagonDesc.a lib/libLLVMHexagonDisassembler.a lib/libLLVMHexagonInfo.a lib/libLLVMInstCombine.a
-  #  lib/libLLVMInstrumentation.a lib/libLLVMipo.a lib/libLLVMIRReader.a lib/libLLVMLanaiAsmParser.a
-    
-  #- ninja lib/libLLVMLanaiCodeGen.a lib/libLLVMLanaiDesc.a lib/libLLVMLanaiDisassembler.a lib/libLLVMLanaiInfo.a lib/libLLVMLanaiInstPrinter.a lib/libLLVMLinker.a lib/libLLVMLTO.a lib/libLLVMMC.a lib/libLLVMMCDisassembler.a lib/libLLVMMCJIT.a 
+    lib/libLLVMHexagonDesc.a lib/libLLVMHexagonDisassembler.a lib/libLLVMHexagonInfo.a lib/libLLVMInstCombine.a
+    lib/libLLVMInstrumentation.a lib/libLLVMipo.a lib/libLLVMIRReader.a lib/libLLVMLanaiAsmParser.a
+    #lib/libLLVMLanaiCodeGen.a lib/libLLVMLanaiDesc.a lib/libLLVMLanaiDisassembler.a lib/libLLVMLanaiInfo.a lib/libLLVMLanaiInstPrinter.a
+    #lib/libLLVMLinker.a lib/libLLVMLTO.a lib/libLLVMMC.a lib/libLLVMMCDisassembler.a lib/libLLVMMCJIT.a
   
 after_build:
   # Make cache to continue in llvm-builder
   - find . -name *.o -o -name *.obj -o -name *.a -o -name *.inc -o -name *.tmp > tar_file.list
-  - tar zcvf swift_llvm_cache.tar.gz -T tar_file.list include bin/clang-tblgen.exe bin/llvm-tblgen.exe .ninja_deps .ninja_log
+  - tar zcf swift_llvm_cache2.tar.gz -T tar_file.list include bin/clang-tblgen.exe bin/llvm-tblgen.exe .ninja_deps .ninja_log
   - mv swift_llvm_cache2.tar.gz %APPVEYOR_BUILD_FOLDER%
 
 test_script:
