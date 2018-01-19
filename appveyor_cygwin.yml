@@ -75,8 +75,8 @@ build_script:
     lib/libLLVMDemangle.a lib/libLLVMExecutionEngine.a lib/libLLVMGlobalISel.a lib/libLLVMHexagonAsmParser.a lib/libLLVMHexagonCodeGen.a
     lib/libLLVMHexagonDesc.a lib/libLLVMHexagonDisassembler.a lib/libLLVMHexagonInfo.a lib/libLLVMInstCombine.a
     lib/libLLVMInstrumentation.a lib/libLLVMipo.a lib/libLLVMIRReader.a lib/libLLVMLanaiAsmParser.a
-    #lib/libLLVMLanaiCodeGen.a lib/libLLVMLanaiDesc.a lib/libLLVMLanaiDisassembler.a lib/libLLVMLanaiInfo.a lib/libLLVMLanaiInstPrinter.a
-    #lib/libLLVMLinker.a lib/libLLVMLTO.a lib/libLLVMMC.a lib/libLLVMMCDisassembler.a lib/libLLVMMCJIT.a
+    lib/libLLVMLanaiCodeGen.a lib/libLLVMLanaiDesc.a lib/libLLVMLanaiDisassembler.a lib/libLLVMLanaiInfo.a lib/libLLVMLanaiInstPrinter.a
+    lib/libLLVMLinker.a lib/libLLVMLTO.a lib/libLLVMMC.a lib/libLLVMMCDisassembler.a lib/libLLVMMCJIT.a
   
 after_build:
   # Make cache to continue in llvm-builder
