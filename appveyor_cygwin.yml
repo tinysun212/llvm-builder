@@ -8,8 +8,8 @@ environment:
 install:
   # Set Environment
   - SET PATH_ORIGINAL=%PATH%
-  - SET "PATH_MINGW64=c:\cygwin64\bin"
-  - SET PATH=%PATH_MINGW64%;%PATH_ORIGINAL%
+  - SET "PATH_CYGWIN64=c:\cygwin64\bin"
+  - SET PATH=%PATH_CYGWIN64%;%PATH_ORIGINAL%
   - SET WORK_DIR=c:\projects
   - cd %WORK_DIR%
   
@@ -83,6 +83,11 @@ build_script:
     lib/libLLVMObjCARCOpts.a lib/libLLVMObject.a lib/libLLVMOption.a lib/libLLVMPasses.a lib/libLLVMPowerPCAsmParser.a
     lib/libLLVMPowerPCAsmPrinter.a lib/libLLVMPowerPCCodeGen.a lib/libLLVMPowerPCDesc.a lib/libLLVMPowerPCDisassembler.a
     lib/libLLVMPowerPCInfo.a lib/libLLVMProfileData.a lib/libLLVMRISCVCodeGen.a lib/libLLVMRISCVDesc.a lib/libLLVMRISCVInfo.a
+    lib/libLLVMRuntimeDyld.a lib/libLLVMScalarOpts.a lib/libLLVMSelectionDAG.a lib/libLLVMSparcAsmParser.a lib/libLLVMSparcAsmPrinter.a
+    lib/libLLVMSparcCodeGen.a lib/libLLVMSparcDesc.a lib/libLLVMSparcDisassembler.a lib/libLLVMSparcInfo.a lib/libLLVMSupport.a
+    lib/libLLVMSystemZAsmParser.a lib/libLLVMSystemZAsmPrinter.a lib/libLLVMSystemZCodeGen.a lib/libLLVMSystemZDesc.a
+    lib/libLLVMSystemZDisassembler.a lib/libLLVMSystemZInfo.a lib/libLLVMTarget.a lib/libLLVMTransformUtils.a lib/libLLVMVectorize.a
+    lib/libLLVMX86AsmParser.a
 
 after_build:
   # Make cache to continue in llvm-builder
