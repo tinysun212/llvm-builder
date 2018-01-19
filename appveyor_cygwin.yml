@@ -56,11 +56,11 @@ build_script:
   - cd %WORK_DIR%/build/Ninja-ReleaseAssert/llvm
   - SET WORK_DIR_IN_CYGWIN=/cygdrive/c/projects
   # workaround for llvm-tblgen.exe
-  - cmake -G Ninja -D CMAKE_BUILD_TYPE=RELEASE -DCMAKE_C_COMPILER=gcc  -DCMAKE_CXX_COMPILER=g++ -DLLVM_ENABLE_ASSERTIONS:BOOL=TRUE %WORK_DIR_IN_CYGWIN%/llvm
-  - ninja bin/llvm-tblgen.exe
-  - ninja clean
+  #- cmake -G Ninja -D CMAKE_BUILD_TYPE=RELEASE -DCMAKE_C_COMPILER=gcc  -DCMAKE_CXX_COMPILER=g++ -DLLVM_ENABLE_ASSERTIONS:BOOL=TRUE %WORK_DIR_IN_CYGWIN%/llvm
+  #- ninja bin/llvm-tblgen.exe
+  #- ninja clean
   #
-  - cmake -G Ninja -D CMAKE_BUILD_TYPE=RELEASE -DCMAKE_C_COMPILER=clang  -DCMAKE_CXX_COMPILER=clang++ -DLLVM_ENABLE_ASSERTIONS:BOOL=TRUE %WORK_DIR_IN_CYGWIN%/llvm
+  - cmake -G Ninja -DCMAKE_CXX_FLAGS=-O3 -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DLLVM_ENABLE_ASSERTIONS:BOOL=TRUE %WORK_DIR_IN_CYGWIN%/llvm
   # Use artifacts previously created by ninja
   - wget -q https://ci.appveyor.com/api/projects/tinysun212/llvm-prebuilder-r96b5/artifacts/swift_llvm_cache.tar.gz
   - tar zxf swift_llvm_cache.tar.gz
