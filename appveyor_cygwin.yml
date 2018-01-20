@@ -58,8 +58,8 @@ build_script:
   - wget -q https://ci.appveyor.com/api/projects/tinysun212/llvm-cache2-builder/artifacts/swift_llvm_cache2.tar.gz
   - tar zxf swift_llvm_cache2.tar.gz
   - ninja -j1 bin/cygclang-4.dll
-  - ninja -j1 bin/llc.exe
-  - ninja -j1
+  #- ninja -j1 bin/llc.exe
+  - ninja bin/clang.exe
 
 after_build:
   - cd %WORK_DIR%/build/Ninja-ReleaseAssert/llvm
