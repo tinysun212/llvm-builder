@@ -57,6 +57,7 @@ build_script:
   # Use artifacts previously created by ninja
   - wget -q https://ci.appveyor.com/api/projects/tinysun212/llvm-cache2-builder/artifacts/swift_llvm_cache2.tar.gz
   - tar zxf swift_llvm_cache2.tar.gz
+  - ninja -j1 bin/cygclang-4.dll
   - ninja
 
 after_build:
