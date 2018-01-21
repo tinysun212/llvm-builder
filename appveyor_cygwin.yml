@@ -53,7 +53,8 @@ build_script:
   - c:/cygwin64/bin/mkdir -p %WORK_DIR%/build/Ninja-ReleaseAssert/llvm
   - cd %WORK_DIR%/build/Ninja-ReleaseAssert/llvm
   - SET WORK_DIR_IN_CYGWIN=/cygdrive/c/projects
-  - cmake -G Ninja -DCMAKE_CXX_FLAGS=-O3 -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DLLVM_ENABLE_ASSERTIONS:BOOL=TRUE %WORK_DIR_IN_CYGWIN%/llvm
+  - cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DLLVM_ENABLE_ASSERTIONS:BOOL=TRUE %WORK_DIR_IN_CYGWIN%/llvm
+  - cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DLLVM_ENABLE_ASSERTIONS:BOOL=TRUE %WORK_DIR_IN_CYGWIN%/llvm
   # Use artifacts previously created by ninja
   - wget -q https://ci.appveyor.com/api/projects/tinysun212/llvm-cache2-builder/artifacts/swift_llvm_cache2.tar.gz
   - tar zxf swift_llvm_cache2.tar.gz
