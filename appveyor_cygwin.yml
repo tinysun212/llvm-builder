@@ -55,8 +55,8 @@ install:
   
 build_script:
   # Build clang
-  - c:/cygwin64/bin/mkdir -p %WORK_DIR%/build/Ninja-ReleaseAssert/llvm
-  - cd %WORK_DIR%/build/Ninja-ReleaseAssert/llvm
+  - MKDIR %WORK_DIR%\build\Ninja-ReleaseAssert\llvm-cygwin-x86_64
+  - CD %WORK_DIR%/build/Ninja-ReleaseAssert/llvm-cygwin-x86_64
   - SET WORK_DIR_IN_CYGWIN=/cygdrive/c/projects
   - cmake -G Ninja -DCMAKE_C_COMPILER:PATH=/usr/bin/clang -DCMAKE_CXX_COMPILER:PATH=/usr/bin/clang++ -DLLVM_VERSION_MAJOR:STRING=4
     -DLLVM_VERSION_MINOR:STRING=0 -DLLVM_VERSION_PATCH:STRING=0 -DCLANG_VERSION_MAJOR:STRING=4 -DCLANG_VERSION_MINOR:STRING=0
@@ -72,12 +72,9 @@ build_script:
   - wget -q https://ci.appveyor.com/api/projects/tinysun212/llvm-cache2-builder/artifacts/swift_llvm_cache2.tar.gz
   - tar zxf swift_llvm_cache2.tar.gz
   - ninja
-  - echo "#include <cstdio>" > tt.cpp
-  - echo "void foo() {}" >> tt.cpp
-  - sh -c "bin/clang++ -c tt.cpp -v"
 
 after_build:
-  - cd %WORK_DIR%/build/Ninja-ReleaseAssert/llvm
+  - cd %WORK_DIR%/build/Ninja-ReleaseAssert/llvm-cygwin-x86_64
   - tar zcf swift_llvm_bin.tar.gz lib/*.a bin/clang-4.0.exe bin/clang.exe bin/clang++.exe bin/llvm-tblgen.exe cmake include lib/clang lib/cmake tools
   - mv swift_llvm_bin.tar.gz %APPVEYOR_BUILD_FOLDER%
 
