@@ -73,7 +73,7 @@ build_script:
   - tar zxf swift_llvm_cache2.tar.gz
   - ninja
   - echo "#include <cstdio>" > tt.cpp
-  - echo "void foo() {} >> tt.cpp
+  - echo "void foo() {}" >> tt.cpp
   - sh -c "bin/clang++ -c tt.cpp -v"
 
 after_build:
