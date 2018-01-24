@@ -74,7 +74,7 @@ build_script:
   - ninja
   - echo "#include <cstdio>" > tt.cpp
   - echo "void foo() {} >> tt.cpp
-  - clang++ -c tt.cpp -v
+  - sh -c "clang++ -c tt.cpp -v"
 
 after_build:
   - cd %WORK_DIR%/build/Ninja-ReleaseAssert/llvm
