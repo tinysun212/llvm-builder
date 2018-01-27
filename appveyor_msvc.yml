@@ -9,8 +9,10 @@ environment:
 install:
   # Set Environment Variables
   - SET PATH_ORIGINAL=%PATH%
-  #- SET "PATH_MSYS64=c:\msys64\usr\bin"
-  #- SET PATH=%PATH_MSYS64%;%PATH_ORIGINAL%
+  # use msys64 for only 'tar'
+  # remove this when we can use the '7z' instead of 'tar'
+  - SET "PATH_MSYS64=c:\msys64\usr\bin"
+  - SET PATH=%PATH_MSYS64%;%PATH_ORIGINAL%
   - SET WORK_DIR=c:\projects
   - CD %WORK_DIR%
   
