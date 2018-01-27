@@ -50,11 +50,14 @@ build_script:
   - CALL "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
   - cmake -G "Ninja" -DCMAKE_C_COMPILER=clang-cl -DCMAKE_CXX_COMPILER=clang-cl -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-DLLVM_ENABLE_DUMP" ..\..\..\llvm
   # Use artifacts previously created by ninja
+  - SET PATH=%PATH_MSYS64%;%PATH_ORIGINAL%
   - wget -q https://ci.appveyor.com/api/projects/tinysun212/llvm-prebuilder-163tm/artifacts/swift_llvm_cache.tar.gz
   - tar zxf swift_llvm_cache2.tar.gz
+  - SET PATH=%PATH_ORIGINAL%
   - ninja
 
 after_build:
+  - SET PATH=%PATH_MSYS64%;%PATH_ORIGINAL%
   - CD %WORK_DIR%/build/NinjaMSVC/llvm
   - tar zcf swift_llvm_bin.tar.gz lib/*.a lib/*.lib bin/clang-4.0.exe bin/clang.exe bin/clang++.exe bin/llvm-tblgen.exe cmake include lib/clang lib/cmake tools
   - MOVE swift_llvm_bin.tar.gz %APPVEYOR_BUILD_FOLDER%
