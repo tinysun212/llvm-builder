@@ -24,28 +24,14 @@ install:
   - CD %WORK_DIR%
   # llvm source
   - wget -q -O llvm_src.tar.gz https://github.com/tinysun212/swift-llvm/archive/swift-windows-4.0-branch.tar.gz
-  - 7z x llvm_src.tar.gz -so | 7z x -si -ttar -bd
+  # Extract gz and then extract tar in silent mode(-bd -bso0)
+  - 7z x llvm_src.tar.gz -so | 7z x -si -ttar -bd -bso0
   - MOVE pax_global_header llvm_commit_id
   - MOVE swift-llvm-swift-windows-4.0-branch llvm
   # clang source
   - wget -q -O clang_src.tar.gz https://github.com/tinysun212/swift-clang/archive/swift-windows-4.0-branch.tar.gz
-  # Pre-extract the targets of the symbolic links
-  # The Windows native symbolic link system cann't create a symbolic link to non-exist target.
-  #- SET PATH_ORIGINAL=%PATH%
-  #- SET PATH=%PATH_MSYS64%;%PATH%
-  #- c:\msys64\usr\bin\tar zxf clang_src.tar.gz 
-  #    swift-clang-swift-windows-4.0-branch/test/Driver/Inputs/basic_cross_linux_tree/usr/bin/i386-unknown-linux-gnu-ld.gold
-  #    swift-clang-swift-windows-4.0-branch/test/Driver/Inputs/basic_cross_linux_tree/usr/bin/x86_64-unknown-linux-gnu-ld.gold
-  #    swift-clang-swift-windows-4.0-branch/test/Driver/Inputs/basic_cross_linux_tree/usr/i386-unknown-linux-gnu/bin/ld.gold
-  #    swift-clang-swift-windows-4.0-branch/test/Driver/Inputs/basic_cross_linux_tree/usr/x86_64-unknown-linux-gnu/bin/ld.gold
-  #    swift-clang-swift-windows-4.0-branch/test/Driver/Inputs/multilib_32bit_linux_tree/usr/bin/i386-unknown-linux-gnu-as
-  #    swift-clang-swift-windows-4.0-branch/test/Driver/Inputs/multilib_32bit_linux_tree/usr/bin/i386-unknown-linux-gnu-ld
-  #    swift-clang-swift-windows-4.0-branch/test/Driver/Inputs/multilib_64bit_linux_tree/usr/bin/x86_64-unknown-linux-gnu-as
-  #    swift-clang-swift-windows-4.0-branch/test/Driver/Inputs/multilib_64bit_linux_tree/usr/bin/x86_64-unknown-linux-gnu-ld
-  #- c:\msys64\usr\bin\tar zxf clang_src.tar.gz
-  - 7z x clang_src.tar.gz -so | 7z x -si -ttar -bd
+  - 7z x clang_src.tar.gz -so | 7z x -si -ttar -bd -bso0
   - MOVE pax_global_header clang_commit_id
-  #- SET PATH=%PATH_ORIGINAL%
   - MOVE swift-clang-swift-windows-4.0-branch clang
   # link clang into llvm
   - CD %WORK_DIR%/llvm/tools
@@ -59,11 +45,12 @@ build_script:
   - cmake -G "Ninja" -DCMAKE_C_COMPILER=clang-cl -DCMAKE_CXX_COMPILER=clang-cl -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-DLLVM_ENABLE_DUMP" ..\..\..\llvm
   # Use artifacts previously created by ninja
   - wget -q https://ci.appveyor.com/api/projects/tinysun212/llvm-prebuilder-163tm/artifacts/swift_llvm_cache.tar.gz
-  - SET PATH_ORIGINAL=%PATH%
-  - SET PATH=%PATH_MSYS64%;%PATH%
-  - c:\msys64\usr\bin\tar zxf swift_llvm_cache.tar.gz
-  - SET PATH=%PATH_ORIGINAL%
-  - ninja bin/FileCheck.exe
+  #- SET PATH_ORIGINAL=%PATH%
+  #- SET PATH=%PATH_MSYS64%;%PATH%
+  #- c:\msys64\usr\bin\tar zxf swift_llvm_cache.tar.gz
+  - 7z x swift_llvm_cache.tar.gz -so | 7z x -si -ttar -bd -bso0
+  #- SET PATH=%PATH_ORIGINAL%
+  #- ninja bin/FileCheck.exe
   - ninja
 
 after_build:
