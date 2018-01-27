@@ -24,11 +24,8 @@ install:
   - CD %WORK_DIR%
   # llvm source
   - wget -q -O llvm_src.tar.gz https://github.com/tinysun212/swift-llvm/archive/swift-windows-4.0-branch.tar.gz
-  #- SET PATH_ORIGINAL=%PATH%
-  #- SET PATH=%PATH_MSYS64%;%PATH%
-  #- c:\msys64\usr\bin\tar zxf llvm_src.tar.gz
   - 7z x llvm_src.tar.gz -so | 7z x -si -ttar -bd
-  #- SET PATH=%PATH_ORIGINAL%
+  - MOVE pax_global_header llvm_commit_id
   - MOVE swift-llvm-swift-windows-4.0-branch llvm
   # clang source
   - wget -q -O clang_src.tar.gz https://github.com/tinysun212/swift-clang/archive/swift-windows-4.0-branch.tar.gz
@@ -46,7 +43,8 @@ install:
   #    swift-clang-swift-windows-4.0-branch/test/Driver/Inputs/multilib_64bit_linux_tree/usr/bin/x86_64-unknown-linux-gnu-as
   #    swift-clang-swift-windows-4.0-branch/test/Driver/Inputs/multilib_64bit_linux_tree/usr/bin/x86_64-unknown-linux-gnu-ld
   #- c:\msys64\usr\bin\tar zxf clang_src.tar.gz
-  - 7z x clang_src.tar.gz -so | 7z x -si -ttar -bd -y
+  - 7z x clang_src.tar.gz -so | 7z x -si -ttar -bd
+  - MOVE pax_global_header clang_commit_id
   #- SET PATH=%PATH_ORIGINAL%
   - MOVE swift-clang-swift-windows-4.0-branch clang
   # link clang into llvm
@@ -66,6 +64,7 @@ build_script:
   - c:\msys64\usr\bin\tar zxf swift_llvm_cache.tar.gz
   - SET PATH=%PATH_ORIGINAL%
   - ninja bin/FileCheck.exe
+  - ninja
 
 after_build:
   - CD %WORK_DIR%/build/NinjaMSVC/llvm
