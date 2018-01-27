@@ -52,7 +52,7 @@ build_script:
   # Use artifacts previously created by ninja
   - SET PATH=%PATH_MSYS64%;%PATH_ORIGINAL%
   - wget -q https://ci.appveyor.com/api/projects/tinysun212/llvm-prebuilder-163tm/artifacts/swift_llvm_cache.tar.gz
-  - tar zxf swift_llvm_cache2.tar.gz
+  - tar zxf swift_llvm_cache.tar.gz
   - SET PATH=%PATH_ORIGINAL%
   - ninja
 
