@@ -24,7 +24,8 @@ install:
   - CD %WORK_DIR%
   # llvm source
   - wget -q -O llvm_src.tar.gz https://github.com/tinysun212/swift-llvm/archive/swift-windows-4.0-branch.tar.gz
-  - SET PATH_ORIGINAL=%PATH%&SET PATH=%PATH_MSYS64%;%PATH%
+  - SET PATH_ORIGINAL=%PATH%
+  - SET PATH=%PATH_MSYS64%;%PATH%
   - c:\msys64\usr\bin\tar zxf llvm_src.tar.gz
   - SET PATH=%PATH_ORIGINAL%
   - MOVE swift-llvm-swift-windows-4.0-branch llvm
@@ -32,7 +33,8 @@ install:
   - wget -q -O clang_src.tar.gz https://github.com/tinysun212/swift-clang/archive/swift-windows-4.0-branch.tar.gz
   # Pre-extract the targets of the symbolic links
   # The Windows native symbolic link system cann't create a symbolic link to non-exist target.
-  - SET PATH_ORIGINAL=%PATH%&SET PATH=%PATH_MSYS64%;%PATH%
+  - SET PATH_ORIGINAL=%PATH%
+  - SET PATH=%PATH_MSYS64%;%PATH%
   - c:\msys64\usr\bin\tar zxf clang_src.tar.gz 
       swift-clang-swift-windows-4.0-branch/test/Driver/Inputs/basic_cross_linux_tree/usr/bin/i386-unknown-linux-gnu-ld.gold
       swift-clang-swift-windows-4.0-branch/test/Driver/Inputs/basic_cross_linux_tree/usr/bin/x86_64-unknown-linux-gnu-ld.gold
@@ -57,14 +59,16 @@ build_script:
   - cmake -G "Ninja" -DCMAKE_C_COMPILER=clang-cl -DCMAKE_CXX_COMPILER=clang-cl -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-DLLVM_ENABLE_DUMP" ..\..\..\llvm
   # Use artifacts previously created by ninja
   - wget -q https://ci.appveyor.com/api/projects/tinysun212/llvm-prebuilder-163tm/artifacts/swift_llvm_cache.tar.gz
-  - SET PATH_ORIGINAL=%PATH%&SET PATH=%PATH_MSYS64%;%PATH%
+  - SET PATH_ORIGINAL=%PATH%
+  - SET PATH=%PATH_MSYS64%;%PATH%
   - c:\msys64\usr\bin\tar zxf swift_llvm_cache.tar.gz
   - SET PATH=%PATH_ORIGINAL%
   - ninja bin/FileCheck.exe
 
 after_build:
   - CD %WORK_DIR%/build/NinjaMSVC/llvm
-  - SET PATH_ORIGINAL=%PATH%&SET PATH=%PATH_MSYS64%;%PATH%
+  - SET PATH_ORIGINAL=%PATH%
+  - SET PATH=%PATH_MSYS64%;%PATH%
   - c:\msys64\usr\bin\tar zcf swift_llvm_bin.tar.gz lib/*.a lib/*.lib bin/clang-4.0.exe bin/clang.exe bin/clang++.exe bin/llvm-tblgen.exe cmake include lib/clang lib/cmake tools
   - SET PATH=%PATH_ORIGINAL%
   - MOVE swift_llvm_bin.tar.gz %APPVEYOR_BUILD_FOLDER%
