@@ -58,7 +58,7 @@ after_build:
   - CD %WORK_DIR%/build/NinjaMSVC/llvm
   - SET PATH_ORIGINAL=%PATH%
   - SET PATH=%PATH_MSYS64%;%PATH%
-  - c:\msys64\usr\bin\tar zcf swift_llvm_bin.tar.gz lib/*.a lib/*.lib bin/clang-4.0.exe bin/clang.exe bin/clang++.exe bin/llvm-tblgen.exe cmake include lib/clang lib/cmake tools
+  - c:\msys64\usr\bin\tar zcf swift_llvm_bin.tar.gz lib/*.lib lib/*.lib bin/clang.exe bin/clang.exe bin/clang++.exe bin/llvm-tblgen.exe cmake include lib/clang lib/cmake tools
   - SET PATH=%PATH_ORIGINAL%
   - MOVE swift_llvm_bin.tar.gz %APPVEYOR_BUILD_FOLDER%
 
