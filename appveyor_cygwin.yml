@@ -11,7 +11,7 @@ install:
   - SET "PATH_CYGWIN64=c:\cygwin64\bin"
   - SET PATH=%PATH_CYGWIN64%;%PATH_ORIGINAL%
   - SET WORK_DIR=c:\projects
-  - cd %WORK_DIR%
+  - CD %WORK_DIR%
   
   # Install packages
   - C:\cygwin64\setup-x86_64.exe -qnNdO -R C:/cygwin64 -s http://cygwin.mirror.constant.com -l C:/cygwin64/var/cache/setup
@@ -29,11 +29,11 @@ install:
   - tar -x -C / -f binutils-2.25-4.tar.xz
    
   # Download source
-  - cd %WORK_DIR%
+  - CD %WORK_DIR%
   # llvm source
   - wget -q -O llvm_src.tar.gz https://github.com/tinysun212/swift-llvm/archive/swift-4.0.3+mingw.20180102.tar.gz
   - tar zxf llvm_src.tar.gz
-  - mv swift-llvm-swift-4.0.3-mingw.20180102 llvm
+  - MOVE swift-llvm-swift-4.0.3-mingw.20180102 llvm
   # clang source
   - wget -q -O clang_src.tar.gz https://github.com/tinysun212/swift-clang/archive/swift-4.0.3+mingw.20180102.tar.gz
   # Pre-extract the targets of the symbolic links
@@ -48,10 +48,10 @@ install:
       swift-clang-swift-4.0.3-mingw.20180102/test/Driver/Inputs/multilib_64bit_linux_tree/usr/bin/x86_64-unknown-linux-gnu-as
       swift-clang-swift-4.0.3-mingw.20180102/test/Driver/Inputs/multilib_64bit_linux_tree/usr/bin/x86_64-unknown-linux-gnu-ld
   - tar zxf clang_src.tar.gz
-  - mv swift-clang-swift-4.0.3-mingw.20180102 clang
+  - MOVE swift-clang-swift-4.0.3-mingw.20180102 clang
   # link clang into llvm
-  - cd %WORK_DIR%/llvm/tools
-  - MKLINK /d clang ..\..\clang
+  - CD %WORK_DIR%/llvm/tools
+  - MKLINK /D clang ..\..\clang
   
 build_script:
   # Build clang
@@ -69,14 +69,14 @@ build_script:
     -DLLVM_BUILD_EXTERNAL_COMPILER_RT:BOOL=TRUE -DLLVM_LIT_ARGS=-sv -DCMAKE_INSTALL_PREFIX:PATH=/usr/ -DINTERNAL_INSTALL_PREFIX=local
     %WORK_DIR_IN_CYGWIN%/llvm
   # Use artifacts previously created by ninja
-  - wget -q https://ci.appveyor.com/api/projects/tinysun212/llvm-cache2-builder/artifacts/swift_llvm_cache2.tar.gz
-  - tar zxf swift_llvm_cache2.tar.gz
+  - wget -q https://ci.appveyor.com/api/projects/tinysun212/llvm-prebuilder-r96b5/artifacts/swift_llvm_cache.tar.gz
+  - tar zxf swift_llvm_cache.tar.gz
   - ninja
 
 after_build:
-  - cd %WORK_DIR%/build/Ninja-ReleaseAssert/llvm-cygwin-x86_64
+  - CD %WORK_DIR%/build/Ninja-ReleaseAssert/llvm-cygwin-x86_64
   - tar zcf swift_llvm_bin.tar.gz lib/*.a bin/clang-4.0.exe bin/clang.exe bin/clang++.exe bin/llvm-tblgen.exe cmake include lib/clang lib/cmake tools
-  - mv swift_llvm_bin.tar.gz %APPVEYOR_BUILD_FOLDER%
+  - MOVE swift_llvm_bin.tar.gz %APPVEYOR_BUILD_FOLDER%
 
 test_script:
   - 'echo skip test'
