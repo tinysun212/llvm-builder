@@ -48,7 +48,8 @@ build_script:
   #- SET PATH_ORIGINAL=%PATH%
   #- SET PATH=%PATH_MSYS64%;%PATH%
   #- c:\msys64\usr\bin\tar zxf swift_llvm_cache.tar.gz
-  - 7z x swift_llvm_cache.tar.gz -so | 7z x -si -ttar -bd -bso0
+  - 7z x swift_llvm_cache.tar.gz -bd -bso0
+  - 7z x swift_llvm_cache.tar -bd -bso0
   #- SET PATH=%PATH_ORIGINAL%
   #- ninja bin/FileCheck.exe
   - ninja
