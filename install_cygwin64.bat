@@ -10,7 +10,7 @@ rem Set Environment
  CD %WORK_DIR%
   
 rem Install packages
- C:\cygwin64\setup-x86_64.exe -qnNdO -R C:/cygwin64 -s http://cygwin.mirror.constant.com -l C:/cygwin64/var/cache/setup
+ C:\cygwin64\setup-x86_64.exe -qnNdO -R C:/cygwin64 -s http://cygwin.mirror.constant.com -l C:/cygwin64/var/cache/setup ^
     -P cmake           ^
     -P ninja           ^
     -P clang           ^
