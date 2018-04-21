@@ -15,7 +15,7 @@ rem Build clang
     -DLLVM_BUILD_EXTERNAL_COMPILER_RT:BOOL=TRUE -DLLVM_LIT_ARGS=-sv -DCMAKE_INSTALL_PREFIX:PATH=/usr/ -DINTERNAL_INSTALL_PREFIX=local ^
     %WORK_DIR_IN_CYGWIN%/llvm
 rem Use artifacts previously created by ninja
- SET JOB_NAME=Environment: PLATFORM=cygwin64
+ SET JOB_NAME=Environment: BUILD_TARGET=cygwin64
  wget -q -O swift_llvm_cache.tar.gz https://ci.appveyor.com/api/projects/tinysun212/llvm-prebuilder/artifacts/swift_llvm_cache.tar.gz?job="%JOB_NAME%"
  tar zxf swift_llvm_cache.tar.gz
  ninja
