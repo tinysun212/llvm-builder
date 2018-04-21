@@ -2,8 +2,8 @@ version: 1.0.{build}
 
 environment:
   matrix:
-  - PLATFORM: mingw
-  - PLATFORM: cygwin
+  - PLATFORM: mingw64
+  - PLATFORM: cygwin64
   - PLATFORM: msvc
 
 install:
