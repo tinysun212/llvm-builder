@@ -16,6 +16,6 @@ rem Build clang
     %WORK_DIR_IN_CYGWIN%/llvm
 rem Use artifacts previously created by ninja
  SET JOB_NAME=Environment: PLATFORM=cygwin64
- wget -q https://ci.appveyor.com/api/projects/tinysun212/llvm-prebuilder/artifacts/swift_llvm_cache.tar.gz?job="%JOB_NAME%"
+ wget -q -O swift_llvm_cache.tar.gz https://ci.appveyor.com/api/projects/tinysun212/llvm-prebuilder/artifacts/swift_llvm_cache.tar.gz?job="%JOB_NAME%"
  tar zxf swift_llvm_cache.tar.gz
  ninja
